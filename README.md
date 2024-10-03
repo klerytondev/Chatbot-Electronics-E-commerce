@@ -1,4 +1,4 @@
-# OpenAI: Chatbot--Electronics_e-commerce
+# Chatbot--Electronics-e-commerce
 
 ## ⚙️ Configuração do Ambiente
 
@@ -6,14 +6,14 @@
 
 **Windows:**
 ```bash
-python -m venv cChatbot--Electronics_e-commerce
-cChatbot--Electronics_e-commerce\Scripts\activate
+python -m venv chatbot---electronics-e-commerce
+chatbot---electronics-e-commerce\Scripts\activate
 ```
 
 **Mac/Linux:**
 ```bash
-python3 -m venv cChatbot--Electronics_e-commerce
-source cChatbot--Electronics_e-commerce/bin/activate
+python3 -m venv chatbot---electronics-e-commerce
+source chatbot---electronics-e-commerce/bin/activate
 ```
 
 ### Instalação das Bibliotecas
