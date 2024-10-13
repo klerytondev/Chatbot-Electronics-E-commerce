@@ -1,4 +1,4 @@
-# Chatbot--Electronics-e-commerce
+# Chatbot Electronics E-commerce
 
 ## ⚙️ Configuração do Ambiente
 
@@ -6,7 +6,7 @@
 
 **Windows:**
 ```bash
-python -m venv chatbot---electronics-e-commerce
+python -m venv chatbot-electronics-E-commerce
 chatbot---electronics-e-commerce\Scripts\activate
 ```
 
