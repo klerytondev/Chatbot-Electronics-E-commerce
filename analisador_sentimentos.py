@@ -54,11 +54,10 @@ def analisador_sentimentos(produto, prompt_sistema) -> None:
     try:
         prompt_usuario = load(f"./data/avaliacoes-{produto}.txt")
         print(f"Iniciou a análise de sentimentos do produto {produto}")
-        template = template_mensagem(prompt_sistema, prompt_usuario)
         
         modelo, parser = parameters()
         chain = modelo | parser
-        analise = chain.invoke(template)
+        analise = chain.invoke(template_mensagem(prompt_sistema, prompt_usuario))
         
         # Salvar a análise gerada
         save(f"./data/analise-{produto}.txt", analise)
