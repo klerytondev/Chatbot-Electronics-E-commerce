@@ -4,21 +4,8 @@ import openai
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
+from constants import prompt_system_analyzer
 
-prompt_sistema = f"""
-        Você é um analisador de sentimentos de avaliações de produtos.
-        Escreva um parágrafo com até 50 palavras resumindo as avaliações e 
-        depois atribua qual o sentimento geral para o produto.
-        Identifique também 3 pontos fortes e 3 pontos fracos identificados a partir das avaliações.
-
-        # Formato de Saída e escrita do arquivo:
-
-        Nome do Produto:
-        Resumo das Avaliações:
-        Sentimento Geral: [utilize aqui apenas Positivo, Negativo ou Neutro]
-        Ponto fortes: lista com três bullets
-        Pontos fracos: lista com três bullets
-    """
 
 def parameters() -> tuple:
     load_dotenv()
@@ -27,12 +14,12 @@ def parameters() -> tuple:
     parser = StrOutputParser()
     return modelo, parser
 
-def template_mensagem(prompt_sistema, prompt_usuario) -> str:
+def template_mensagem(prompt_system_analyzer, prompt_usuario) -> str:
     template = ChatPromptTemplate.from_messages([
         ("system", "{system}"),
         ("user", "{user}"),
     ])
-    rendered_template = template.format(user=prompt_usuario, system=prompt_sistema)
+    rendered_template = template.format(user=prompt_usuario, system=prompt_system_analyzer)
     return rendered_template
 
 def load(nome_do_arquivo) -> str:
@@ -50,14 +37,14 @@ def save(nome_do_arquivo, conteudo) -> None:
     except IOError as e:
         print(f"Erro ao salvar arquivo: {e}")
 
-def analisador_sentimentos(produto, prompt_sistema) -> None:
+def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
     try:
         prompt_usuario = load(f"./data/avaliacoes-{produto}.txt")
         print(f"Iniciou a análise de sentimentos do produto {produto}")
         
         modelo, parser = parameters()
         chain = modelo | parser
-        analise = chain.invoke(template_mensagem(prompt_sistema, prompt_usuario))
+        analise = chain.invoke(template_mensagem(prompt_system_analyzer, prompt_usuario))
         
         # Salvar a análise gerada
         save(f"./data/analise-{produto}.txt", analise)
@@ -71,4 +58,4 @@ def analisador_sentimentos(produto, prompt_sistema) -> None:
 # Mockado
 lista_de_produtos = ["Maquiagem mineral"]
 for produto in lista_de_produtos:
-    analisador_sentimentos(produto, prompt_sistema)
+    analisador_sentimentos(produto, prompt_system_analyzer)

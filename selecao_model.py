@@ -5,14 +5,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 import tiktoken
-
-prompt_sistema = """
-Identifique o perfil de compra para cada cliente a seguir.
-
-O formato de saída deve ser:
-
-cliente - descreva o perfil do cliente em 3 palavras
-"""
+from constants import prompt_system_model
 
 def parameters() -> tuple:
     load_dotenv()
@@ -21,12 +14,12 @@ def parameters() -> tuple:
     parser = StrOutputParser()
     return modelo, parser
 
-def template_mensagem(prompt_sistema, prompt_usuario) -> str:
+def template_mensagem(prompt_system_model, prompt_usuario) -> str:
     template = ChatPromptTemplate.from_messages([
-        ("system", prompt_sistema),
+        ("system", prompt_system_model),
         ("user", prompt_usuario),
     ])
-    rendered_template = template.format(user=prompt_usuario, system=prompt_sistema)
+    rendered_template = template.format(user=prompt_usuario, system=prompt_system_model)
     return rendered_template
 
 def carrega(nome_do_arquivo):
@@ -43,7 +36,7 @@ modelo, parser  = parameters()
 modelo_nome = modelo.model_name 
 codificador = tiktoken.encoding_for_model(modelo_nome)
 
-lista_de_tokens = codificador.encode(prompt_sistema + prompt_usuario)
+lista_de_tokens = codificador.encode(prompt_system_model + prompt_usuario)
 numero_de_tokens = len(lista_de_tokens)
 print(f"Número de tokens na entrada: {numero_de_tokens}")
 tamanho_esperado_saida = 2048
@@ -55,6 +48,6 @@ print(f"Modelo escolhido: {modelo}")
 
 chain = modelo | parser
 
-template = template_mensagem(prompt_sistema, prompt_usuario)
+template = template_mensagem(prompt_system_model, prompt_usuario)
 response = chain.invoke(template)
 print(f"Respostas: {response}")
