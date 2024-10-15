@@ -5,30 +5,15 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from constants import prompt_system_analyzer
+from utils import template_mensagem, load
 
 
 def parameters() -> tuple:
     load_dotenv()
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    modelo = ChatOpenAI(model="gpt-4o-mini", max_tokens=256)
+    modelo = ChatOpenAI(model="gpt-4o-mini")
     parser = StrOutputParser()
     return modelo, parser
-
-def template_mensagem(prompt_system_analyzer, prompt_usuario) -> str:
-    template = ChatPromptTemplate.from_messages([
-        ("system", "{system}"),
-        ("user", "{user}"),
-    ])
-    rendered_template = template.format(user=prompt_usuario, system=prompt_system_analyzer)
-    return rendered_template
-
-def load(nome_do_arquivo) -> str:
-    try:
-        with open(nome_do_arquivo, "r", encoding="utf-8") as arquivo:
-            dados = arquivo.read()
-            return dados
-    except IOError as e:
-        print(f"Erro: {e}")
 
 def save(nome_do_arquivo, conteudo) -> None:
     try:
@@ -49,7 +34,6 @@ def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
         # Salvar a análise gerada
         save(f"./data/analise-{produto}.txt", analise)
         print(f"Análise salva em ./data/analise-{produto}.txt")
-        
     except openai.AuthenticationError as e:
         print(f"Erro de Autenticação: {e}")
     except openai.APIError as e:

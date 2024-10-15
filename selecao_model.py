@@ -6,6 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 import tiktoken
 from constants import prompt_system_model
+from utils import template_mensagem, load
 
 def parameters() -> tuple:
     load_dotenv()
@@ -14,23 +15,7 @@ def parameters() -> tuple:
     parser = StrOutputParser()
     return modelo, parser
 
-def template_mensagem(prompt_system_model, prompt_usuario) -> str:
-    template = ChatPromptTemplate.from_messages([
-        ("system", prompt_system_model),
-        ("user", prompt_usuario),
-    ])
-    rendered_template = template.format(user=prompt_usuario, system=prompt_system_model)
-    return rendered_template
-
-def carrega(nome_do_arquivo):
-    try:
-        with open(nome_do_arquivo, "r") as arquivo:
-            dados = arquivo.read()
-            return dados
-    except IOError as e:
-        print(f"Erro: {e}")
-
-prompt_usuario = carrega("data/lista_de_compras_100_clientes.csv")
+prompt_usuario = load("data/lista_de_compras_100_clientes.csv")
 
 modelo, parser  = parameters()
 modelo_nome = modelo.model_name 
