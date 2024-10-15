@@ -1,6 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 import openai
 
+# Função para criar um template de mensagem
 def template_mensagem(prompt_system, prompt_usuario) -> str:
     try:
         template = ChatPromptTemplate.from_messages([
@@ -16,6 +17,7 @@ def template_mensagem(prompt_system, prompt_usuario) -> str:
     except Exception as e:
         return f"Ocorreu um erro inesperado: {str(e)}"
     
+# Função para carregar um arquivo
 def load(nome_do_arquivo) -> str:
     try:
         with open(nome_do_arquivo, "r", encoding="utf-8") as arquivo:
