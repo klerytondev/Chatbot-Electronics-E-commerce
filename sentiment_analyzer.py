@@ -39,7 +39,8 @@ def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
     except openai.APIError as e:
         print(f"Erro de API: {e}")
 
-# Mockado
-lista_de_produtos = ["Maquiagem mineral"]
-for produto in lista_de_produtos:
-    analisador_sentimentos(produto, prompt_system_analyzer)
+if __name__ == "__main__":
+    # Mockado
+    lista_de_produtos = ["Maquiagem mineral"]
+    for produto in lista_de_produtos:
+        analisador_sentimentos(produto, prompt_system_analyzer)
