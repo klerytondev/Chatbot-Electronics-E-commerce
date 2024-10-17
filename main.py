@@ -12,13 +12,13 @@ def parameters() -> tuple:
     parser = StrOutputParser()
     return modelo, parser
 
-def template_mensagem(language, text) -> str:
-    template = ChatPromptTemplate.from_messages([
-        ("system", "Traduza o texto a seguir para {idioma}"),
-        ("user", "{texto}"),
-    ])
-    rendered_template = template.format(idioma=language, texto=text)
-    return rendered_template
+# def template_mensagem(language, text) -> str:
+#     template = ChatPromptTemplate.from_messages([
+#         ("system", "Traduza o texto a seguir para {idioma}"),
+#         ("user", "{texto}"),
+#     ])
+#     rendered_template = template.format(idioma=language, texto=text)
+#     return rendered_template
 
 def template_mensagem() -> str:
     return ChatPromptTemplate.from_messages([
