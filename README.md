@@ -1,4 +1,4 @@
-# Chatbot Electronics E-commerce
+# Chatbot Allspark E-commerce
 
 ## ⚙️ Configuração do Ambiente
 

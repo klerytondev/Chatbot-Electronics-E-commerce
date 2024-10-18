@@ -2,33 +2,17 @@ from dotenv import load_dotenv
 import os
 import openai
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from constants import prompt_system_analyzer
+from utils import template_mensagem, load
+from model_selection import model
 
 
 def parameters() -> tuple:
     load_dotenv()
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    modelo = ChatOpenAI(model="gpt-4o-mini", max_tokens=256)
     parser = StrOutputParser()
-    return modelo, parser
-
-def template_mensagem(prompt_system_analyzer, prompt_usuario) -> str:
-    template = ChatPromptTemplate.from_messages([
-        ("system", "{system}"),
-        ("user", "{user}"),
-    ])
-    rendered_template = template.format(user=prompt_usuario, system=prompt_system_analyzer)
-    return rendered_template
-
-def load(nome_do_arquivo) -> str:
-    try:
-        with open(nome_do_arquivo, "r", encoding="utf-8") as arquivo:
-            dados = arquivo.read()
-            return dados
-    except IOError as e:
-        print(f"Erro: {e}")
+    return parser
 
 def save(nome_do_arquivo, conteudo) -> None:
     try:
@@ -39,23 +23,24 @@ def save(nome_do_arquivo, conteudo) -> None:
 
 def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
     try:
-        prompt_usuario = load(f"./data/avaliacoes-{produto}.txt")
+        prompt_usuario = load(f"./data/imput/avaliacoes-{produto}.txt")
         print(f"Iniciou a análise de sentimentos do produto {produto}")
         
-        modelo, parser = parameters()
-        chain = modelo | parser
+        parser = parameters()
+        selected_model = model(prompt_system_analyzer, prompt_usuario)
+        chain = selected_model | parser
         analise = chain.invoke(template_mensagem(prompt_system_analyzer, prompt_usuario))
         
         # Salvar a análise gerada
-        save(f"./data/analise-{produto}.txt", analise)
+        save(f"./data/output/analise-{produto}.txt", analise)
         print(f"Análise salva em ./data/analise-{produto}.txt")
-        
     except openai.AuthenticationError as e:
         print(f"Erro de Autenticação: {e}")
     except openai.APIError as e:
         print(f"Erro de API: {e}")
 
-# Mockado
-lista_de_produtos = ["Maquiagem mineral"]
-for produto in lista_de_produtos:
-    analisador_sentimentos(produto, prompt_system_analyzer)
+if __name__ == "__main__":
+    # Mockado
+    lista_de_produtos = ["Maquiagem mineral"]
+    for produto in lista_de_produtos:
+        analisador_sentimentos(produto, prompt_system_analyzer)

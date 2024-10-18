@@ -1,0 +1,54 @@
+## Produtos Disponíveis
+
+1. **Computadores e Notebooks:**  
+   - Notebooks de última geração para trabalho e jogos.  
+   - Computadores desktop com alta performance.  
+   - Laptops leves e portáteis para uso cotidiano.  
+   - Estações de trabalho com processadores avançados para edição de vídeo e design gráfico.
+
+2. **Periféricos:**  
+   - Teclados mecânicos e ergonômicos.  
+   - Mouses sem fio com alta precisão.  
+   - Fones de ouvido e headsets com tecnologia de cancelamento de ruído.  
+   - Câmeras web de alta definição para videoconferências.  
+   - Monitores ultrawide para uma experiência imersiva.  
+   - Microfones USB para streaming e gravação de áudio.
+
+3. **Acessórios de Tecnologia:**  
+   - Carregadores rápidos e universais para dispositivos móveis.  
+   - Monitores 4K de alto desempenho.  
+   - SSDs e discos rígidos externos para armazenamento.  
+   - Docking stations para conectar múltiplos dispositivos.  
+   - Capas e cases protetores para notebooks e tablets.  
+   - Extensores de sinal Wi-Fi para melhorar a conectividade.
+
+4. **Componentes de Hardware:**  
+   - Placas-mãe de última geração para montagem de PCs personalizados.  
+   - Placas de vídeo dedicadas para gamers e criadores de conteúdo.  
+   - Memórias RAM de alta performance.  
+   - Fontes de alimentação eficientes para computadores de alta demanda.  
+   - Processadores de última geração (Intel e AMD).  
+   - Coolers e sistemas de refrigeração líquida para controle de temperatura.
+
+5. **Armazenamento e Redes:**  
+   - SSDs NVMe para velocidades ultrarrápidas.  
+   - HDDs de grande capacidade para backup e arquivos massivos.  
+   - Sistemas NAS (Network Attached Storage) para armazenamento em rede.  
+   - Roteadores Wi-Fi 6 para conexões mais rápidas e estáveis.  
+   - Switches de rede para expansão de infraestrutura.  
+   - Modems e roteadores 5G para internet móvel de alta velocidade.
+
+6. **Gaming:**  
+   - Consoles de videogame de última geração.  
+   - Volantes, controles e acessórios para jogos de simulação.  
+   - Cadeiras gamers ergonômicas para maior conforto durante longas sessões.  
+   - Mesas gamers com ajuste de altura e organização de cabos.  
+   - Iluminação RGB para setups de jogos personalizados.
+
+7. **Smart Home (Casa Inteligente):**  
+   - Assistentes virtuais (Google Nest, Amazon Alexa).  
+   - Lâmpadas inteligentes controladas por voz.  
+   - Fechaduras eletrônicas com integração via smartphone.  
+   - Câmeras de segurança com monitoramento remoto.  
+   - Termostatos inteligentes para controle de temperatura.  
+   - Sensores de movimento e automação residencial.
