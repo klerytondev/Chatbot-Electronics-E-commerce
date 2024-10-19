@@ -23,7 +23,7 @@ def save(nome_do_arquivo, conteudo) -> None:
 
 def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
     try:
-        prompt_usuario = load(f"./data/imput/avaliacoes-{produto}.txt")
+        prompt_usuario = load(f"data/imput/avaliacoes/avaliacoes-{produto}.txt")
         print(f"Iniciou a análise de sentimentos do produto {produto}")
         
         parser = parameters()
@@ -41,6 +41,6 @@ def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
 
 if __name__ == "__main__":
     # Mockado
-    lista_de_produtos = ["Maquiagem mineral"]
+    lista_de_produtos = ["Monitor de Alta Resolucao"]
     for produto in lista_de_produtos:
         analisador_sentimentos(produto, prompt_system_analyzer)
