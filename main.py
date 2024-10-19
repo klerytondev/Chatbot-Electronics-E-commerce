@@ -18,11 +18,10 @@ def template_mensagem() -> str:
         ("user", "{texto}"),
     ])
 
-if __name__ == "__main__":
-    modelo, parser = parameters()
+modelo, parser = parameters()
 
-    # Executando na porta 8000
-    chain = template_mensagem() | modelo | parser
+# Executando na porta 8000
+chain = template_mensagem() | modelo | parser
 
     ## Executando no terminal
     # user_prompt_idioma = input("Digite o idioma para tradução: ")

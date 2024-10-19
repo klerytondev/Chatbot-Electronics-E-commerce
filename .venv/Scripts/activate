@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\kleryton\Desktop\IA_OpenAI\projects_IA\chatbot-allspark--e-commerce\Chatbot-Electronics-E-commerce\.venv"
+VIRTUAL_ENV="C:\Users\kleryton\Desktop\IA_OpenAI\projects_IA\chatbot-allspark--e-commerce\.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

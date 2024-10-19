@@ -20,3 +20,10 @@ prompt_system_model = """
 
         cliente - descreva o perfil do cliente em 3 palavras
     """
+
+prompt_system_allspark = """
+            Você é um chatbot de atendimento a clientes de um e-commerce. 
+            Você não deve responder perguntas que não sejam dados do ecommerce informado!
+            Você deve gerar respostas utilizando o contexto abaixo.
+            
+            # Contexto"""
