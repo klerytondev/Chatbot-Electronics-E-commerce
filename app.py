@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 from time import sleep
 from utils import load
-from constants import prompt_system_allspark
+from prompt_system import *
 from model_selection import model_str
 from persona_selection import *
 from langchain_core.output_parsers import StrOutputParser
@@ -28,11 +28,13 @@ app.secret_key = 'allspark'
 def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
-    personalidade = selecionar_persona(prompt)
-
+    personality = prompt_system_personas[selecionar_persona(prompt)]
     while True:
         try:
-            prompt_system = f"{prompt_system_allspark}: {contexto}"
+            prompt_system = f"""{prompt_system_allspark}: 
+                                # Contexto {contexto}
+                                # Persona {personality}
+                            """
 
             selected_model = model_str(prompt_system, prompt)
             response = cliente.chat.completions.create(

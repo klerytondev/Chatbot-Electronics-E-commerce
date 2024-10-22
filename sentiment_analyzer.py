@@ -3,7 +3,7 @@ import os
 import openai
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
-from constants import prompt_system_analyzer
+from prompt_system import prompt_system_analyzer
 from utils import template_mensagem, load
 from model_selection import model
 
