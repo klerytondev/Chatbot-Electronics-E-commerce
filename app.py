@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request, Response
+from flask import Flask, render_template, request, Response
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -6,6 +6,7 @@ from time import sleep
 from utils import load
 from constants import prompt_system_allspark
 from model_selection import model_str
+from persona_selection import *
 from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
@@ -27,6 +28,7 @@ app.secret_key = 'allspark'
 def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
+    personalidade = selecionar_persona(prompt)
 
     while True:
         try:
