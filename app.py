@@ -29,8 +29,8 @@ def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
     personality = prompt_system_personas[selecionar_persona(prompt)]
-    contexto = selecionar_contexto(prompt)
-    documento_selecionado = selecionar_documento(contexto)
+    contexto = select_context(prompt)
+    documento_selecionado = select_document(contexto)
     while True:
         try:
             prompt_system = f"""{prompt_system_allspark}: 

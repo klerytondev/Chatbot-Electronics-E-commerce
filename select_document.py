@@ -1,20 +1,27 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-from time import sleep
 from utils import *
+from model_selection import model_str
 
 load_dotenv()
 
-
+_, parser, cliente = parameters()
 cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 modelo = "gpt-4"
+parameters = {
+    "temperature": 1,
+    "max_tokens": 250, #max# 300
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0
+}
 
 politicas_allspark = load('data/imput/políticas_allspark.txt')
 dados_allspark_ecommerce = load('data/imput/dados_allspark_ecommerce.txt')
 produtos_allspark = load('data/imput/produtos_allspark.txt')
 
-def selecionar_documento(resposta_openai):
+def select_document(resposta_openai):
     if "políticas_allspark" in resposta_openai:
         return dados_allspark_ecommerce + "\n" + politicas_allspark
     elif "produtos_allspark" in resposta_openai:
@@ -22,7 +29,7 @@ def selecionar_documento(resposta_openai):
     else:
         return dados_allspark_ecommerce 
 
-def selecionar_contexto(mensagem_usuario):
+def select_context(user_message):
     prompt_system_user = f"""
     A empresa Allspark possui três documentos principais que detalham diferentes aspectos do negócio:
 
@@ -33,9 +40,9 @@ def selecionar_contexto(mensagem_usuario):
     Avalie o prompt do usuário e retorne o documento mais indicado para ser usado no contexto da resposta. Retorne "dados_allspark_ecommerce" se for o Documento 1, "políticas_allspark" se for o Documento 2 e "produtos_allspark" se for o Documento 3. 
 
     """
-
+    selected_model = model_str(prompt_system_user, user_message)
     resposta = cliente.chat.completions.create(
-        model=modelo,
+        # model=modelo,
         messages=[
             {
                 "role": "system",
@@ -43,13 +50,13 @@ def selecionar_contexto(mensagem_usuario):
             },
             {
                 "role": "user",
-                "content" : mensagem_usuario
+                "content" : user_message
             }
         ],
-        temperature=1,
+        **parameters,
+        model = selected_model
     )
 
-    contexto = resposta.choices[0].message.content.lower()
-    print(f"Contexto selecionado: {contexto}")
-
+    contexto = parser.invoke(resposta.choices[0].message.content.lower())
+    # print(f"Contexto selecionado: {contexto}")
     return contexto
