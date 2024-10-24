@@ -8,6 +8,7 @@ from prompt_system import *
 from model_selection import model_str
 from persona_selection import *
 from langchain_core.output_parsers import StrOutputParser
+from select_document import *
 
 load_dotenv()
 cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -20,7 +21,6 @@ parameters = {
     "frequency_penalty": 0,
     "presence_penalty": 0
 }
-contexto = load("data/imput/dados_allspark_ecommerce.txt")
 
 app = Flask(__name__)
 app.secret_key = 'allspark'
@@ -29,10 +29,12 @@ def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
     personality = prompt_system_personas[selecionar_persona(prompt)]
+    contexto = selecionar_contexto(prompt)
+    documento_selecionado = selecionar_documento(contexto)
     while True:
         try:
             prompt_system = f"""{prompt_system_allspark}: 
-                                # Contexto {contexto}
+                                # Contexto {documento_selecionado}
                                 # Persona {personality}
                             """
 

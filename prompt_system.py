@@ -61,6 +61,6 @@ prompt_system_personas = {
 }
 
 prompt_system_persona_selection = """
-    Faça uma análise da mensagem informada abaixo para identificar se o sentimento é: positivo, 
-    neutro ou negativo. Retorne apenas um dos três tipos de sentimentos informados como resposta.
+    Faça uma análise da mensagem informada abaixo para identificar se o sentimento é: "positivo", 
+    "neutro" ou "negativo". Retorne apenas um dos três tipos de sentimentos informados como resposta.
     """
