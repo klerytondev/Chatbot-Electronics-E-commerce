@@ -1,14 +1,10 @@
-from openai import OpenAI
 from dotenv import load_dotenv
-import os
 from utils import *
 from model_selection import model_str
 
 load_dotenv()
 
 _, parser, cliente = parameters()
-cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-modelo = "gpt-4"
 parameters = {
     "temperature": 1,
     "max_tokens": 250, #max# 300
