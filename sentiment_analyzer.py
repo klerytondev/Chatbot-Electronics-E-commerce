@@ -7,7 +7,7 @@ from prompt_system import prompt_system_analyzer
 from utils import *
 from model_selection import model
 
-_, parser, _ = parameters()
+_, parser, _ = initial_parameters()
 
 def save(nome_do_arquivo, conteudo) -> None:
     try:

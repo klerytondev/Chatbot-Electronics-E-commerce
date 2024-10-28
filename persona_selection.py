@@ -6,7 +6,7 @@ from utils import *
 
 load_dotenv()
 
-_, parser, cliente = parameters()
+_, parser, cliente = initial_parameters()
 parameters = {
     "temperature": 1,
     "max_tokens": 15, ######### 300

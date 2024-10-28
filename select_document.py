@@ -4,7 +4,7 @@ from model_selection import model_str
 
 load_dotenv()
 
-_, parser, cliente = parameters()
+_, parser, cliente = initial_parameters()
 parameters = {
     "temperature": 1,
     "max_tokens": 250, #max# 300

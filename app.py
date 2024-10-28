@@ -3,24 +3,14 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 from time import sleep
-from utils import load
+from utils import *
 from prompt_system import *
 from model_selection import model_str
 from persona_selection import *
 from langchain_core.output_parsers import StrOutputParser
 from select_document import *
 
-load_dotenv()
-cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-parser = StrOutputParser()
-selected_model = "gpt-4o-mini"
-parameters = {
-    "temperature": 1,
-    "max_tokens": 15, ######### 300
-    "top_p": 1,
-    "frequency_penalty": 0,
-    "presence_penalty": 0
-}
+model, parser, cliente = initial_parameters()
 
 app = Flask(__name__)
 app.secret_key = 'allspark'

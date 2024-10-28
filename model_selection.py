@@ -6,7 +6,7 @@ from langchain_openai import ChatOpenAI
 import tiktoken
 from utils import *
 
-model, *_ = parameters()
+model, *_ = initial_parameters()
 model_name = model.model_name 
 codificador = tiktoken.encoding_for_model(model_name)
 
