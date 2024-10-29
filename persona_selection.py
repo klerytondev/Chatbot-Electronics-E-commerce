@@ -32,7 +32,7 @@ def selecionar_persona(user_message):
             }
         ],
         **parameters,
-        model = selected_model
+        model = selected_model,
     )
     texto_resposta = parser.invoke(resposta.choices[0].message.content.lower())
     return texto_resposta

@@ -1,13 +1,9 @@
-from flask import Flask, render_template, request, Response
-from openai import OpenAI
-from dotenv import load_dotenv
-import os
+from flask import Flask, render_template, request
 from time import sleep
 from utils import *
 from prompt_system import *
 from model_selection import model_str
 from persona_selection import *
-from langchain_core.output_parsers import StrOutputParser
 from select_document import *
 
 model, parser, cliente = initial_parameters()
@@ -56,8 +52,8 @@ def bot(prompt):
 @app.route("/chat", methods=["POST"])
 def chat():
     prompt = request.json["msg"]
-    resposta = bot(prompt)
-    texto_resposta = parser.invoke(resposta.choices[0].message.content)
+    response = bot(prompt)
+    texto_resposta = parser.invoke(response.choices[0].message.content)
     return texto_resposta
 
 @app.route("/")
