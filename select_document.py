@@ -4,7 +4,7 @@ from model_selection import model_str
 
 load_dotenv()
 
-_, parser, cliente = initial_parameters()
+_, parser, client = initial_parameters()
 parameters = {
     "temperature": 1,
     "max_tokens": 250, #max# 300
@@ -37,7 +37,7 @@ def select_context(user_message):
 
     """
     selected_model = model_str(prompt_system_user, user_message)
-    resposta = cliente.chat.completions.create(
+    resposta = client.chat.completions.create(
         # model=modelo,
         messages=[
             {

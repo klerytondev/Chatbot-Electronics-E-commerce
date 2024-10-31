@@ -7,19 +7,15 @@ from persona_selection import *
 from select_document import *
 from allspark_assistant import *
 
-model, parser, cliente = initial_parameters()
+model, parser, client = initial_parameters()
 
 app = Flask(__name__)
 app.secret_key = 'allspark'
 
-#### Thread e Assistente
-# assistant = create_assistant()
-# thread = create_thread()
-
 assistant = get_json()
-thread_id = assistant["thread_id"]
-assistant_id = assistant["assistant_id"]
-file_ids = assistant["file_ids"]
+thread_id = assistant['thread_id']
+vector_store_id = assistant['vector_store_id']
+assistant_id = assistant['assistant_id']
 
 def bot(prompt):
     maximo_tentativas = 1
@@ -27,8 +23,7 @@ def bot(prompt):
     while True:
         try:
             personality = prompt_system_personas[selecionar_persona(prompt)]
-
-            cliente.beta.threads.messages.create(
+            client.beta.threads.messages.create(
                             thread_id=thread_id, 
                             role = "user",
                             content =  f"""
@@ -37,30 +32,30 @@ def bot(prompt):
                             # Persona
                             {personality}
                             """,
-                            file_ids=file_ids
+                            # file_ids=file_ids
                         )
 
             # Cria uma nova mensagem dentro da thread atual "thread"
-            cliente.beta.threads.messages.create(
+            client.beta.threads.messages.create(
                 thread_id=thread_id, 
                 role = "user",
                 content = prompt,
-                file_ids=file_ids
+                # file_ids=file_ids
             )
             # Cria uma nova execução dentro da thread atual, associando-a 
             # ao assistente que irá responder à pergunta do usuário.
-            run = cliente.beta.threads.runs.create(
+            run = client.beta.threads.runs.create(
                 thread_id=thread_id,
                 assistant_id=assistant_id
             )
             # Aguarda até que até que o assistente resposta a pergunta do usuário.
             while run.status !="completed":
-                run = cliente.beta.threads.runs.retrieve(
+                run = client.beta.threads.runs.retrieve(
                     thread_id=thread_id,
                     run_id=run.id
             )
             #  Recupera uma lista de todas as mensagens dentro da thread atual.
-            historical = list(cliente.beta.threads.messages.list(thread_id=thread_id).data)
+            historical = list(client.beta.threads.messages.list(thread_id=thread_id).data)
             response = historical[0]
             
             return response
@@ -76,7 +71,6 @@ def bot(prompt):
 def chat():
     prompt = request.json["msg"]
     response = bot(prompt)
-    print(f"Response: {response}")
     texto_resposta = response.content[0].text.value
     return texto_resposta
 

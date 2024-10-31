@@ -8,10 +8,10 @@ from langchain_core.output_parsers import StrOutputParser
 
 def initial_parameters() -> tuple:
     load_dotenv()
-    cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     model = ChatOpenAI(model="gpt-4o-mini")
     parser = StrOutputParser()
-    return model, parser, cliente
+    return model, parser, client
 
 # Função para criar um template de mensagem
 def template_mensagem(prompt_system, prompt_usuario) -> str:

@@ -6,7 +6,7 @@ from utils import *
 
 load_dotenv()
 
-_, parser, cliente = initial_parameters()
+_, parser, client = initial_parameters()
 parameters = {
     "temperature": 1,
     "max_tokens": 15, ######### 300
@@ -20,7 +20,7 @@ personality = prompt_system_persona_selection
 def selecionar_persona(user_message):
     prompt_system = prompt_system_persona_selection
     selected_model = model_str(prompt_system, user_message)
-    resposta = cliente.chat.completions.create(
+    resposta = client.chat.completions.create(
         messages=[
             {
                 "role": "system",

@@ -6,7 +6,7 @@ from model_selection import model_str
 from persona_selection import *
 from select_document import *
 
-model, parser, cliente = initial_parameters()
+model, parser, client = initial_parameters()
 
 app = Flask(__name__)
 app.secret_key = 'allspark'
@@ -25,7 +25,7 @@ def bot(prompt):
                             """
 
             selected_model = model_str(prompt_system, prompt)
-            response = cliente.chat.completions.create(
+            response = client.chat.completions.create(
                 messages=[
                         {
                                 "role": "system",

@@ -6,10 +6,10 @@ from time import sleep
 load_dotenv()
 from utils import *
 
-# cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # modelo = "gpt-4o-mini"
 
-model, _, cliente = initial_parameters()
+model, _, client = initial_parameters()
 
 my_tools = [
     {"type": "file_search"},
