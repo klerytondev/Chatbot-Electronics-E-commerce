@@ -24,8 +24,7 @@ prompt_system_model = """
 prompt_system_allspark = """
             Você é um chatbot de atendimento a clientes de um e-commerce. 
             Você não deve responder perguntas que não sejam dados do ecommerce informado!
-            Você deve gerar respostas utilizando o contexto abaixo.
-            Você deve adotar a persona abaixo.
+            Além disso, acesse os arquivos associados a você e a thread para responder as perguntas.
             """
 
 
@@ -63,4 +62,8 @@ prompt_system_personas = {
 prompt_system_persona_selection = """
     Faça uma análise da mensagem informada abaixo para identificar se o sentimento é: "positivo", 
     "neutro" ou "negativo". Retorne apenas um dos três tipos de sentimentos informados como resposta.
+    """
+prompt_system_persona_selection_update = """
+    Assuma, de agora em diante, a personalidade abaixo. 
+    Ignore as personalidades anteriores.
     """

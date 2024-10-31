@@ -59,16 +59,14 @@ def get_json():
 def create_thread():
     return cliente.beta.threads.create()
 
-def create_assistant():
+def create_assistant(file_ids=[]):
     persona = {prompt_system_personas['neutro']}
     selected_model = model_str(prompt_system_allspark, str(persona))
     assistant = cliente.beta.assistants.create(
         name="Atendente Allspark",
-        instructions = f"""{prompt_system_allspark}: 
-                            # Contexto {dados_allspark_ecommerce}
-                            # Persona {persona}
-                        """,
+        instructions = f"{prompt_system_allspark}",
         model = selected_model,
+        file_ids = file_ids
         )
     return assistant
 
