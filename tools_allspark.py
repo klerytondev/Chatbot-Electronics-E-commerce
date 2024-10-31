@@ -3,17 +3,16 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 from time import sleep
-from helpers import *
-from selecionar_documento import *
-from selecionar_persona import *
-
 load_dotenv()
+from utils import *
 
-cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-modelo = "gpt-4-1106-preview"
+# cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# modelo = "gpt-4o-mini"
 
-minhas_tools = [
-    {"type": "retrieval"},
+model, _, cliente = initial_parameters()
+
+my_tools = [
+    {"type": "file_search"},
     {
       "type": "function",
             "function": {

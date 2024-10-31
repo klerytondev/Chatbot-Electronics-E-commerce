@@ -33,7 +33,7 @@ def bot(prompt):
                             role = "user",
                             content =  f"""
                             {prompt_system_persona_selection_update}:
-                            
+
                             # Persona
                             {personality}
                             """,
@@ -44,7 +44,8 @@ def bot(prompt):
             cliente.beta.threads.messages.create(
                 thread_id=thread_id, 
                 role = "user",
-                content =  prompt
+                content = prompt,
+                file_ids=file_ids
             )
             # Cria uma nova execução dentro da thread atual, associando-a 
             # ao assistente que irá responder à pergunta do usuário.
@@ -75,6 +76,7 @@ def bot(prompt):
 def chat():
     prompt = request.json["msg"]
     response = bot(prompt)
+    print(f"Response: {response}")
     texto_resposta = response.content[0].text.value
     return texto_resposta
 
