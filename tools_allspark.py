@@ -6,8 +6,6 @@ from time import sleep
 load_dotenv()
 from utils import *
 
-# client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-# modelo = "gpt-4o-mini"
 
 model, _, client = initial_parameters()
 
@@ -23,7 +21,7 @@ my_tools = [
                 "properties": {
                     "codigo": {
                         "type": "string",
-                        "description": "O código promocional, no formato, CUPOM_XX. Por exemplo: CUPOM_ECO",
+                        "description": "O código promocional, no formato, TECHXX. Por exemplo: TECH10",
                     },
                     "validade": {
                         "type": "string",
