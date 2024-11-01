@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask,render_template, request, Response
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -14,7 +15,7 @@ my_tools = [
     {
       "type": "function",
             "function": {
-            "name": "validar_codigo_promocional",
+            "name": "validate_promo_code",
             "description": "Valide um código promocional com base nas diretrizes de Descontos e Promoções da empresa",
             "parameters": {
                 "type": "object",
@@ -35,19 +36,20 @@ my_tools = [
     
 ]
 
-def validar_codigo_promocional(argumentos):
-    codigo = argumentos.get("codigo")
-    validade = argumentos.get("validade")
+def validate_promo_code(argumentos):
+    print('Entrou na função')
+    code = argumentos.get("codigo")
+    expiration_date = argumentos.get("validade")
 
     return f"""
         
         # Formato de Resposta
         
-        {codigo} com validade: {validade}. 
+        {code} com validade: {expiration_date}. 
         Ainda, diga se é válido ou não para o usuário.
 
         """
 
 minhas_funcoes = {
-    "validar_codigo_promocional": validar_codigo_promocional,
+    'validate_promo_code' : validate_promo_code,
 }

@@ -54,5 +54,5 @@ def select_context(user_message):
     )
 
     contexto = parser.invoke(resposta.choices[0].message.content.lower())
-    # print(f"Contexto selecionado: {contexto}")
+    print(f"Contexto selecionado: {contexto}")
     return contexto

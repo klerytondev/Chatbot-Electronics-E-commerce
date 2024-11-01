@@ -100,6 +100,15 @@ def chat():
     texto_resposta = response.content[0].text.value
     return texto_resposta
 
+# @app.route("/chat", methods=["POST"])
+# def chat():
+#     prompt = request.json["msg"]
+#     response = bot(prompt)
+#     if isinstance(response, str):
+#         return response
+#     texto_resposta = response['content'][0]['text']['value']
+#     return texto_resposta
+
 @app.route("/")
 def home():
     return render_template("index.html")
