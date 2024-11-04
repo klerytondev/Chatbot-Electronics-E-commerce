@@ -2,6 +2,12 @@
 
 **Desenvolvido por:** Kleryton de Souza Maria
 
+**Membros:**<br/> 
+Kleryton de Souza Maria,<br/> 
+Maiara Giavoni,<br/> 
+Lucas Paim de Paula,<br/> 
+Rafael Tafelli dos Santos
+
 ## Visão Geral
 
 O projeto "Chatbot Allspark E-commerce" visa desenvolver um chatbot inteligente para auxiliar clientes em um e-commerce de eletrônicos. Utilizando a API da OpenAI e a biblioteca `langchain`, o chatbot é capaz de fornecer respostas precisas e relevantes, melhorando a experiência do usuário e otimizando o atendimento ao cliente. A integração de IA Generativa e Modelos de Linguagem de Grande Escala (LLM) permite que o chatbot compreenda e responda a uma ampla variedade de consultas de forma natural e eficiente.
@@ -93,11 +99,23 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
 ## Configuração
 
-Configure o arquivo `.env` com as suas credenciais da API da OpenAI:
+### Gerando uma Chave de API da OpenAI
+
+1. Acesse o site da [OpenAI](https://www.openai.com/) e crie uma conta, se ainda não tiver uma.
+2. Após fazer login, vá para a seção de [API Keys](https://platform.openai.com/account/api-keys).
+3. Clique em "Create new secret key" para gerar uma nova chave de API.
+4. Copie a chave gerada. Você precisará dela para configurar o projeto.
+
+### Configurando o Arquivo `.env`
+
+1. Crie um arquivo `.env` na raiz do projeto.
+2. Adicione a chave de API da OpenAI ao arquivo `.env` no seguinte formato:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key
 ```
+
+Substitua `your_openai_api_key` pela chave que você copiou anteriormente.
 
 ## Estrutura do Projeto
 
@@ -148,7 +166,7 @@ Para rodar o chatbot:
 python app.py
 ```
 
-O chatbot estará disponível em `http://127.0.0.1:5000/`.
+O chatbot estará disponível em `http://localhost:5000`.
 
 ## Testes
 
