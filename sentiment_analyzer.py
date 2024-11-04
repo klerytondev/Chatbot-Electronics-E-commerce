@@ -3,16 +3,11 @@ import os
 import openai
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
-from constants import prompt_system_analyzer
-from utils import template_mensagem, load
+from prompt_system import prompt_system_analyzer
+from utils import *
 from model_selection import model
 
-
-def parameters() -> tuple:
-    load_dotenv()
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    parser = StrOutputParser()
-    return parser
+_, parser, _ = initial_parameters()
 
 def save(nome_do_arquivo, conteudo) -> None:
     try:
@@ -26,7 +21,6 @@ def analisador_sentimentos(produto, prompt_system_analyzer) -> None:
         prompt_usuario = load(f"data/imput/avaliacoes/avaliacoes-{produto}.txt")
         print(f"Iniciou a análise de sentimentos do produto {produto}")
         
-        parser = parameters()
         selected_model = model(prompt_system_analyzer, prompt_usuario)
         chain = selected_model | parser
         analise = chain.invoke(template_mensagem(prompt_system_analyzer, prompt_usuario))

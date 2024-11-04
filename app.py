@@ -1,25 +1,12 @@
-from flask import Flask,render_template, request, Response
-from openai import OpenAI
-from dotenv import load_dotenv
-import os
+from flask import Flask, render_template, request
 from time import sleep
-from utils import load
-from constants import prompt_system_allspark
+from utils import *
+from prompt_system import *
 from model_selection import model_str
-from langchain_core.output_parsers import StrOutputParser
+from persona_selection import *
+from select_document import *
 
-load_dotenv()
-cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-parser = StrOutputParser()
-selected_model = "gpt-4o-mini"
-parameters = {
-    "temperature": 1,
-    "max_tokens": 15, ######### 300
-    "top_p": 1,
-    "frequency_penalty": 0,
-    "presence_penalty": 0
-}
-contexto = load("data/imput/dados_allspark_ecommerce.txt")
+model, parser, client = initial_parameters()
 
 app = Flask(__name__)
 app.secret_key = 'allspark'
@@ -27,13 +14,18 @@ app.secret_key = 'allspark'
 def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
-
+    personality = prompt_system_personas[selecionar_persona(prompt)]
+    contexto = select_context(prompt)
+    documento_selecionado = select_document(contexto)
     while True:
         try:
-            prompt_system = f"{prompt_system_allspark}: {contexto}"
+            prompt_system = f"""{prompt_system_allspark}: 
+                                # Contexto {documento_selecionado}
+                                # Persona {personality}
+                            """
 
             selected_model = model_str(prompt_system, prompt)
-            response = cliente.chat.completions.create(
+            response = client.chat.completions.create(
                 messages=[
                         {
                                 "role": "system",
@@ -60,8 +52,8 @@ def bot(prompt):
 @app.route("/chat", methods=["POST"])
 def chat():
     prompt = request.json["msg"]
-    resposta = bot(prompt)
-    texto_resposta = parser.invoke(resposta.choices[0].message.content)
+    response = bot(prompt)
+    texto_resposta = parser.invoke(response.choices[0].message.content)
     return texto_resposta
 
 @app.route("/")

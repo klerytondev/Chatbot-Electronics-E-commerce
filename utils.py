@@ -1,5 +1,17 @@
 from langchain_core.prompts import ChatPromptTemplate
 import openai
+import os
+from openai import OpenAI
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+from langchain_core.output_parsers import StrOutputParser
+
+def initial_parameters() -> tuple:
+    load_dotenv()
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    model = ChatOpenAI(model="gpt-4o-mini")
+    parser = StrOutputParser()
+    return model, parser, client
 
 # Função para criar um template de mensagem
 def template_mensagem(prompt_system, prompt_usuario) -> str:
