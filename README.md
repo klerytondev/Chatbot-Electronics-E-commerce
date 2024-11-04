@@ -1,12 +1,7 @@
 # Chatbot Allspark E-commerce
 
-**Desenvolvido por:** Kleryton de Souza Maria
+**Desenvolvido por:** Kleryton de Souza
 
-**Membros:**<br/> 
-Kleryton de Souza Maria,<br/> 
-Maiara Giavoni,<br/> 
-Lucas Paim de Paula,<br/> 
-Rafael Tafelli dos Santos
 
 ## Visão Geral
 
@@ -166,7 +161,7 @@ Para rodar o chatbot:
 python app.py
 ```
 
-O chatbot estará disponível em `http://localhost:5000`.
+O chatbot estará disponível em `http://127.0.0.1:5000/`.
 
 ## Testes
 
