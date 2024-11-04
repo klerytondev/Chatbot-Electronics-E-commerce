@@ -64,7 +64,7 @@ def bot(prompt):
                     respostas_tools_acionadas = [] 
                     for uma_tool in tools_acionadas:
                         nome_funcao = uma_tool.function.name
-                        funcao_escolhida = minhas_funcoes[nome_funcao]
+                        funcao_escolhida = functions[nome_funcao]
                         argumentos = json.loads(uma_tool.function.arguments)
                         print(argumentos)
                         resposta_funcao = funcao_escolhida(argumentos)

@@ -62,10 +62,11 @@ def get_json():
         print("Arquivo 'assistentes.json' não encontrado.")
 
 def create_assistant(vector_store):
+    print("Criando assistente...")
     persona = {prompt_system_personas['neutro']}
     selected_model = model_str(prompt_system_allspark, str(persona))
     assistant = client.beta.assistants.create(
-        name='Ecomart Assistant',
+        name='Allspark Assistant 01',
         instructions=f"{prompt_system_allspark}",
         model=selected_model,
         tools=my_tools,
