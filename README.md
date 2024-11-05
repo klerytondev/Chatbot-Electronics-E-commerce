@@ -224,4 +224,4 @@ O chatbot Allspark E-commerce é projetado para fornecer respostas rápidas e pr
 
 ## Licença
 
-Este projeto está licenciado sob a MIT License. Sinta-se à vontade para usar, modificar e distribuir este software, desde que mantenha os créditos apropriados.
+Este projeto está licenciado sob a [MIT License](license.txt). Sinta-se à vontade para usar, modificar e distribuir este software, desde que mantenha os créditos apropriados..
