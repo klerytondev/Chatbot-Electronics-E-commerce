@@ -34,6 +34,7 @@ O chatbot ajuda a transformar a interação com o cliente em uma experiência ma
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Execução](#execução)
 - [Testes](#testes)
+- [Exemplo de Interação](#exemplo-de-interação)
 - [Referências](#referências)
 - [Licença](#licença)
 
@@ -170,6 +171,52 @@ Para executar os testes unitários:
 ```bash
 pytest
 ```
+
+## Exemplo de Interação
+
+O chatbot Allspark E-commerce é projetado para fornecer respostas rápidas e precisas às perguntas dos usuários. Abaixo está um exemplo de como a interação com o chatbot pode ocorrer:
+
+<br>
+<img src="static/img/bot.png" alt="Chatbot" width="700"/>  
+<br><br>
+
+**Usuário:** Olá, eu gostaria de saber mais sobre os produtos de armazenamento que vocês oferecem.
+
+**Chatbot:** Olá! Claro, nós oferecemos uma variedade de produtos de armazenamento, incluindo:
+- SSDs NVMe para velocidades ultrarrápidas.
+- HDDs de grande capacidade para backup e arquivos massivos.
+- Sistemas NAS (Network Attached Storage) para armazenamento em rede.
+
+**Usuário:** Quais são os produtos disponíveis na categoria de Gaming?
+
+**Chatbot:** Na categoria de Gaming, nós temos:
+- Consoles de videogame de última geração.
+- Volantes, controles e acessórios para jogos de simulação.
+- Cadeiras gamers ergonômicas para maior conforto durante longas sessões.
+- Mesas gamers com ajuste de altura e organização de cabos.
+- Iluminação RGB para setups de jogos personalizados.
+
+**Usuário:** Vocês têm produtos para casa inteligente?
+
+**Chatbot:** Sim, temos vários produtos para casa inteligente, incluindo:
+- Assistentes virtuais (Google Nest, Amazon Alexa).
+- Lâmpadas inteligentes controladas por voz.
+- Fechaduras eletrônicas com integração via smartphone.
+- Câmeras de segurança com monitoramento remoto.
+- Termostatos inteligentes para controle de temperatura.
+- Sensores de movimento e automação residencial.
+
+**Usuário:** Como posso aplicar um código de desconto?
+
+**Chatbot:** Para aplicar um código de desconto, basta inserir o código promocional no campo apropriado durante o processo de checkout. Por exemplo, você pode usar o código TECH10 para obter 10% de desconto em notebooks selecionados até 30/11/2024.
+
+**Usuário:** Qual é a política de devolução de vocês?
+
+**Chatbot:** Nossa política de devolução permite que você devolva produtos não utilizados e em perfeitas condições dentro de 30 dias. Os custos de envio de devolução são de responsabilidade do cliente, a menos que o produto tenha chegado com defeito ou danificado. Os reembolsos podem ser emitidos na forma de crédito na loja ou reembolso no método de pagamento original.
+
+**Usuário:** Como posso entrar em contato com o atendimento ao cliente?
+
+**Chatbot:** Você pode entrar em contato com nossa equipe de atendimento ao cliente por chat ao vivo ou e-mail (allspark@empresa.com). Estamos disponíveis para ajudar com perguntas, preocupações e assistência nas compras.
 
 ## Referências
 
