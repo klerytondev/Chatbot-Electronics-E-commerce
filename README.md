@@ -221,6 +221,11 @@ O chatbot Allspark E-commerce é projetado para fornecer respostas rápidas e pr
 ## Referências
 
 - [Preços OpenAI](https://openai.com/pricing)
+- [Python](https://www.python.org/)
+- [LangChain](https://www.langchain.com/)
+- [LLM (Large Language Models)](https://en.wikipedia.org/wiki/Large_language_model)
+- [Generative AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence)
+
 
 ## Licença
 
