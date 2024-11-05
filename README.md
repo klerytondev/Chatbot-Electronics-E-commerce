@@ -68,7 +68,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/maiagia/chatbot-allspark-e-commerce.git
+   git clone https://github.com/klerytondev/Chatbot-Electronics-E-commerce.git
    cd chatbot-allspark-e-commerce
    ```
 
