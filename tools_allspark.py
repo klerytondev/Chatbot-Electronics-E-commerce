@@ -31,7 +31,7 @@ my_tools = [
     
 ]
 
-def validate_promo_code(argumnets):
+def validate_promo_code(arguments):
     """
     Validates a promotional code and returns a formatted response.
     Args:
@@ -41,8 +41,8 @@ def validate_promo_code(argumnets):
     Returns:
         str: A formatted string indicating the promotional code and its expiration date.
     """
-    code = argumnets.get("codigo")
-    expiration_date = argumnets.get("validade")
+    code = arguments.get("codigo")
+    expiration_date = arguments.get("validade")
 
     return f"""
         
