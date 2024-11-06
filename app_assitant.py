@@ -21,6 +21,26 @@ STATUS_COMPLETED = "completed"
 STATUS_REQUIRES_ACTION = "requires_action" 
 
 def bot(prompt):
+    """
+    Interacts with an AI assistant to process a given prompt and return a response.
+    Args:
+        prompt (str): The input prompt to be processed by the AI assistant.
+    Returns:
+        str: The response from the AI assistant or an error message if the process fails.
+    Raises:
+        Exception: If an error occurs during the interaction with the AI assistant.
+    Workflow:
+        1. Selects a personality based on the prompt.
+        2. Creates a new message in the current thread with the selected personality.
+        3. Creates a new message in the current thread with the user's prompt.
+        4. Initiates a new run within the current thread, associating it with the assistant.
+        5. Waits for the assistant to complete the run.
+        6. If the run requires action, processes the required tools and submits their outputs.
+        7. Retrieves the list of all messages within the current thread.
+        8. Returns the first message in the historical list as the response.
+    Note:
+        The function retries once if an exception occurs during the process.
+    """
     max_attempts = 1
     attempts = 0
     while True:

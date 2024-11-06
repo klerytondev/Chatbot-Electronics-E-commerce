@@ -32,6 +32,15 @@ my_tools = [
 ]
 
 def validate_promo_code(argumnets):
+    """
+    Validates a promotional code and returns a formatted response.
+    Args:
+        argumnets (dict): A dictionary containing the promotional code and its expiration date.
+            - "codigo" (str): The promotional code.
+            - "validade" (str): The expiration date of the promotional code.
+    Returns:
+        str: A formatted string indicating the promotional code and its expiration date.
+    """
     code = argumnets.get("codigo")
     expiration_date = argumnets.get("validade")
 
