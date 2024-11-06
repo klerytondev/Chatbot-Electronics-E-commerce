@@ -31,9 +31,9 @@ my_tools = [
     
 ]
 
-def validate_promo_code(argumentos):
-    code = argumentos.get("codigo")
-    expiration_date = argumentos.get("validade")
+def validate_promo_code(argumnets):
+    code = argumnets.get("codigo")
+    expiration_date = argumnets.get("validade")
 
     return f"""
         

@@ -21,11 +21,11 @@ STATUS_COMPLETED = "completed"
 STATUS_REQUIRES_ACTION = "requires_action" 
 
 def bot(prompt):
-    maximo_tentativas = 1
-    repeticao = 0
+    max_attempts = 1
+    attempts = 0
     while True:
         try:
-            personality = prompt_system_personas[selecionar_persona(prompt)]
+            personality = prompt_system_personas[select_persona(prompt)]
             client.beta.threads.messages.create(
                             thread_id=thread_id, 
                             role = "user",
@@ -38,21 +38,21 @@ def bot(prompt):
                             # file_ids=file_ids
                         )
 
-            # Cria uma nova mensagem dentro da thread atual "thread"
+            # Create a new message within the current thread "thread"
             client.beta.threads.messages.create(
                 thread_id=thread_id, 
                 role = "user",
                 content = prompt,
                 # file_ids=file_ids
             )
-            # Cria uma nova execução dentro da thread atual, associando-a 
-            # ao assistente que irá responder à pergunta do usuário.
+            # Create a new run within the current thread, associating it 
+            # with the assistant who will answer the user's question.
             run = client.beta.threads.runs.create(
                 thread_id=thread_id,
                 assistant_id=assistant_id
             )
-            # Aguarda até que até que o assistente resposta a pergunta do usuário.
-            while run.status !=STATUS_COMPLETED:
+            # Wait until the assistant answers the user's question.
+            while run.status != STATUS_COMPLETED:
                 run = client.beta.threads.runs.retrieve(
                     thread_id=thread_id,
                     run_id=run.id
@@ -60,36 +60,36 @@ def bot(prompt):
                 print(f"Status: {run.status}")
                 
                 if run.status == STATUS_REQUIRES_ACTION:
-                    tools_acionadas = run.required_action.submit_tool_outputs.tool_calls
-                    respostas_tools_acionadas = [] 
-                    for uma_tool in tools_acionadas:
-                        nome_funcao = uma_tool.function.name
-                        funcao_escolhida = functions[nome_funcao]
-                        argumentos = json.loads(uma_tool.function.arguments)
-                        print(argumentos)
-                        resposta_funcao = funcao_escolhida(argumentos)
+                    triggered_tools = run.required_action.submit_tool_outputs.tool_calls
+                    triggered_tools_responses = [] 
+                    for one_tool in triggered_tools:
+                        function_name = one_tool.function.name
+                        chosen_function = functions[function_name]
+                        arguments = json.loads(one_tool.function.arguments)
+                        print(arguments)
+                        function_response = chosen_function(arguments)
 
-                        respostas_tools_acionadas.append({
-                                "tool_call_id": uma_tool.id,
-                                "output": resposta_funcao
+                        triggered_tools_responses.append({
+                                "tool_call_id": one_tool.id,
+                                "output": function_response
                             })
                     
                     run = client.beta.threads.runs.submit_tool_outputs(
                             thread_id = thread_id,
                             run_id = run.id,
-                            tool_outputs=respostas_tools_acionadas
+                            tool_outputs = triggered_tools_responses
                         )  
 
-            #  Recupera uma lista de todas as mensagens dentro da thread atual.
+            # Retrieve a list of all messages within the current thread.
             historical = list(client.beta.threads.messages.list(thread_id=thread_id).data)
             response = historical[0]
             
             return response
-        except Exception as erro:
-                repeticao += 1
-                if repeticao >= maximo_tentativas:
-                        return "Erro no GPT: %s" % erro
-                print('Erro de comunicação com OpenAI:', erro)
+        except Exception as error:
+                attempts += 1
+                if attempts >= max_attempts:
+                        return "GPT Error: %s" % error
+                print('Communication error with OpenAI:', error)
                 sleep(1)
             
 
@@ -97,21 +97,12 @@ def bot(prompt):
 def chat():
     prompt = request.json["msg"]
     response = bot(prompt)
-    texto_resposta = response.content[0].text.value
-    return texto_resposta
-
-# @app.route("/chat", methods=["POST"])
-# def chat():
-#     prompt = request.json["msg"]
-#     response = bot(prompt)
-#     if isinstance(response, str):
-#         return response
-#     texto_resposta = response['content'][0]['text']['value']
-#     return texto_resposta
+    response_text = response.content[0].text.value
+    return response_text
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
