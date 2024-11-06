@@ -37,6 +37,15 @@ def create_vector_store():
 
 
 def get_json():
+    """
+    Retrieves assistant configuration data from a JSON file. If the file does not exist,
+    it creates a new assistant, vector store, and thread, saves their IDs to the file, 
+    and returns the data.
+    Returns:
+        dict: A dictionary containing the assistant ID, vector store ID, and thread ID.
+    Raises:
+        FileNotFoundError: If the JSON file cannot be found when attempting to read it.
+    """
     filename = "assistentes.json"
     
     if not os.path.exists(filename):
@@ -62,6 +71,16 @@ def get_json():
         print("Arquivo 'assistentes.json' não encontrado.")
 
 def create_assistant(vector_store):
+    """
+    Creates an assistant instance with specified configurations.
+
+    Args:
+        vector_store (VectorStore): The vector store object containing the vector store ID.
+
+    Returns:
+        Assistant: The created assistant instance.
+
+    """
     print("Criando assistente...")
     persona = {prompt_system_personas['neutro']}
     selected_model = model_str(prompt_system_allspark, str(persona))

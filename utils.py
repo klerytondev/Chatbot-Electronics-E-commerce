@@ -15,6 +15,21 @@ def initial_parameters() -> tuple:
 
 # Função para criar um template de mensagem
 def template_mensagem(prompt_system, prompt_user) -> str:
+    """
+    Generates a formatted message template using the provided system and user prompts.
+
+    Args:
+        prompt_system (str): The system prompt to be included in the template.
+        prompt_user (str): The user prompt to be included in the template.
+
+    Returns:
+        str: The rendered message template.
+
+    Raises:
+        openai.APIError: If there is an error with the OpenAI API.
+        openai.AuthenticationError: If there is an authentication error with the OpenAI API.
+        Exception: If an unexpected error occurs.
+    """
     try:
         template = ChatPromptTemplate.from_messages([
             ("system", prompt_system),
