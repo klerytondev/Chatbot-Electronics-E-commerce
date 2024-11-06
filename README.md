@@ -214,6 +214,10 @@ O chatbot Allspark E-commerce é projetado para fornecer respostas rápidas e pr
 
 **<span style="color:green">Chatbot:</span>** Nossa política de devolução permite que você devolva produtos não utilizados e em perfeitas condições dentro de 30 dias. Os custos de envio de devolução são de responsabilidade do cliente, a menos que o produto tenha chegado com defeito ou danificado. Os reembolsos podem ser emitidos na forma de crédito na loja ou reembolso no método de pagamento original.
 
+**Usuário:** o cupom TECH10 é valido?
+
+**<span style="color:green">Chatbot:</span>** O código promocional TECH10 é válido até 30/11/2024. Portanto, você pode utilizá-lo para suas compras. Se precisar de mais informações, estou à disposição para ajudar..
+
 **Usuário:** Como posso entrar em contato com o atendimento ao cliente?
 
 **<span style="color:green">Chatbot:</span>** Você pode entrar em contato com nossa equipe de atendimento ao cliente por chat ao vivo ou e-mail (allspark@empresa.com). Estamos disponíveis para ajudar com perguntas, preocupações e assistência nas compras.
