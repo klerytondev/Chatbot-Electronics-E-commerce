@@ -63,6 +63,11 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 - `flask`
 - `opencv-python`
 - `langchain`
+- `flask`
+- `uvicorn`
+- `langserve`
+- `langsmith`
+- `python-dotenv`
 
 ## Instalação
 
@@ -107,11 +112,68 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 1. Crie um arquivo `.env` na raiz do projeto.
 2. Adicione a chave de API da OpenAI ao arquivo `.env` no seguinte formato:
 
-```env
-OPENAI_API_KEY=your_openai_api_key
-```
+    ```env
+    OPENAI_API_KEY=your_openai_api_key
+    ```
 
-Substitua `your_openai_api_key` pela chave que você copiou anteriormente.
+3. Substitua `your_openai_api_key` pela chave que você copiou anteriormente.
+
+## Configurando Ambiente
+
+Você tem duas opções para rodar o projeto: em um ambiente virtual ou em um container Docker.
+
+### Ambiente Virtual `.env`
+
+1. Crie um arquivo `.env` na raiz do projeto.
+2. Adicione a chave de API da OpenAI ao arquivo `.env` no seguinte formato:
+
+    ```env
+    OPENAI_API_KEY=your_openai_api_key
+    ```
+
+3. Substitua `your_openai_api_key` pela chave que você copiou anteriormente.
+
+4. Crie um ambiente virtual:
+
+    ```bash
+    python -m venv venv
+    ```
+6. Ative o ambiente virtual:
+
+    - No Windows:
+
+       ```bash
+       .\venv\Scripts\activate
+       ```
+    - No macOS/Linux:
+    
+       ```bash
+      source venv/bin/activate
+       ```
+7. Instale as dependências:
+
+     ```bash
+     pip install -r requirements.txt
+     ```
+8. Execute o projeto:
+
+     ```bash
+     python main.py
+     ```
+
+### Ambiente Virtual `Dokerfile`
+
+1.  Construa a imagem Docker:
+
+     ```bash
+     docker build -t app_assistant .
+     ```
+2.  Execute um container:
+
+     ```bash
+     docker run -d -p 5000:5000 --name allspark-chatbot-container allspark-chatbot
+     ```
+3. Acesse o projeto no navegador em `http://127.0.0.1:5000/`.
 
 ## Estrutura do Projeto
 
