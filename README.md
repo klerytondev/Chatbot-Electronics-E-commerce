@@ -124,21 +124,12 @@ Você tem duas opções para rodar o projeto: em um ambiente virtual ou em um co
 
 ### Ambiente Virtual `.env`
 
-1. Crie um arquivo `.env` na raiz do projeto.
-2. Adicione a chave de API da OpenAI ao arquivo `.env` no seguinte formato:
-
-    ```env
-    OPENAI_API_KEY=your_openai_api_key
-    ```
-
-3. Substitua `your_openai_api_key` pela chave que você copiou anteriormente.
-
-4. Crie um ambiente virtual:
+1. Crie um ambiente virtual:
 
     ```bash
     python -m venv venv
     ```
-6. Ative o ambiente virtual:
+2. Ative o ambiente virtual:
 
     - No Windows:
 
@@ -146,16 +137,16 @@ Você tem duas opções para rodar o projeto: em um ambiente virtual ou em um co
        .\venv\Scripts\activate
        ```
     - No macOS/Linux:
-    
+
        ```bash
       source venv/bin/activate
        ```
-7. Instale as dependências:
+3. Instale as dependências:
 
      ```bash
      pip install -r requirements.txt
      ```
-8. Execute o projeto:
+4. Execute o projeto:
 
      ```bash
      python main.py
